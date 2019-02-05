@@ -1,47 +1,31 @@
 package basic
 
 import java.util.Properties
-import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 
+import com.typesafe.config.ConfigFactory
 import org.apache.kafka.common.serialization.Serdes
-import org.apache.kafka.streams.{KafkaStreams, StreamsBuilder, StreamsConfig, Topology}
+import org.apache.kafka.streams.{KafkaStreams, StreamsBuilder, StreamsConfig}
 
-object Pipe {
+object Pipe extends App {
+    val conf = ConfigFactory.load()
 
-  def main(args: Array[String]): Unit = {
-    val config = new Properties
-    config.put(StreamsConfig.APPLICATION_ID_CONFIG, "streams-pipe")
-    config.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
-    config.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass)
-    config.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass)
+    val props = new Properties
+    props.put(StreamsConfig.APPLICATION_ID_CONFIG, "streams-pipe")
+    props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, conf.getString("bootstrap.servers"))
+    props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass)
+    props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass)
 
     val builder = new StreamsBuilder
-
     builder.stream("streams-plaintext-input").to("streams-plaintext-output")
 
     val topology = builder.build()
-
     println(topology.describe())
 
-    val streams = new KafkaStreams(topology, config)
-    val latch = new CountDownLatch(1)
+    val streams = new KafkaStreams(topology, props)
+    streams.start()
 
-    // attach shutdown handler to catch control-c
-    Runtime.getRuntime.addShutdownHook(new Thread("streams-shutdown-hook") {
-      override def run(): Unit = {
-        streams.close
-        latch.countDown
-      }
-    })
-
-    try {
-      streams.start
-      latch.await
-    } catch {
-      case _: Throwable =>
-        System.exit(1)
-    }
-
+  sys.ShutdownHookThread {
+    streams.close(10, TimeUnit.SECONDS)
   }
-
 }

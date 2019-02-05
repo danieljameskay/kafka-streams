@@ -1,1 +1,1 @@
-["basic.Pipe"]
+["basic.LineSplit","basic.Pipe","basic.WordCount"]
