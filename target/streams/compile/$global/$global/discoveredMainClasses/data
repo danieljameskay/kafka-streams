@@ -1,1 +1,1 @@
-["basic.LineSplit","basic.Pipe","basic.WordCount"]
+["basic.LineSplit","basic.Pipe","basic.WordCount","creditcardapp.Main","producers.PurchaseProducer","producers.TransactionProducer"]

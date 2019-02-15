@@ -1,2 +1,17 @@
-[0m[[0m[33mwarn[0m] [0m[0mthere were three deprecation warnings; re-run with -deprecation for details[0m
-[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/dka01/dev/scala/kafka-streams/src/main/scala/zmartapp/KafkaBytesDeserializer.scala:9:80: a pure expression does nothing in statement position[0m
+[0m[[0m[33mwarn[0m] [0m[0m  override def configure(configs: util.Map[String, _], isKey: Boolean): Unit = 0[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                                                               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/dka01/dev/scala/kafka-streams/src/main/scala/zmartapp/KafkaBytesDeserializer.scala:18:32: a pure expression does nothing in statement position[0m
+[0m[[0m[33mwarn[0m] [0m[0m  override def close(): Unit = 0[0m
+[0m[[0m[33mwarn[0m] [0m[0m                               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/dka01/dev/scala/kafka-streams/src/main/scala/zmartapp/KafkaBytesSerializer.scala:9:80: a pure expression does nothing in statement position[0m
+[0m[[0m[33mwarn[0m] [0m[0m  override def configure(configs: util.Map[String, _], isKey: Boolean): Unit = 0[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                                                               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/dka01/dev/scala/kafka-streams/src/main/scala/zmartapp/KafkaBytesSerializer.scala:19:32: a pure expression does nothing in statement position[0m
+[0m[[0m[33mwarn[0m] [0m[0m  override def close(): Unit = 0[0m
+[0m[[0m[33mwarn[0m] [0m[0m                               ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/Users/dka01/dev/scala/kafka-streams/src/main/scala/transformers/PurchaseRewardTransformer.scala:24:25: comparing values of types Int and Null using `!=' will always yield true[0m
+[0m[[0m[33mwarn[0m] [0m[0m    if(accumulatedSoFar != null) {[0m
+[0m[[0m[33mwarn[0m] [0m[0m                        ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mthere were four deprecation warnings; re-run with -deprecation for details[0m
+[0m[[0m[33mwarn[0m] [0m[0m6 warnings found[0m
